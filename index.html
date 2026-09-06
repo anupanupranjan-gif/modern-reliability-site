@@ -4,20 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Modern Reliability</title>
+<link rel="icon" type="image/png" href="logo.png">
 <meta name="description" content="Modern Reliability builds AI-powered platforms that improve how people discover products, how ideas become products, and how digital systems operate at scale.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0b1220;
+    --ink:#0d1117;
     --ink-soft:#3a4152;
     --muted:#6b7280;
     --line:#e6e8ec;
-    --accent:#3652d9;
-    --accent-dark:#243aa8;
-    --bg:#ffffff;
-    --bg-tint:#f7f8fa;
+    --accent:#1a56db;
+    --accent-fill:#4d49fc;
+    --accent-dark:#3a37c9;
+    --bg:#f8f9fb;
+    --bg-tint:#f1f2f6;
     --max:1120px;
   }
   *{box-sizing:border-box;}
@@ -31,8 +33,8 @@
     -webkit-font-smoothing:antialiased;
   }
   h1,h2,h3{
-    font-family:'Fraunces',serif;
-    font-weight:500;
+    font-family:'Instrument Serif',serif;
+    font-weight:400;
     line-height:1.12;
     margin:0;
     letter-spacing:-0.01em;
@@ -40,13 +42,13 @@
   a{color:inherit;text-decoration:none;}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
   .mono{
-    font-family:'JetBrains Mono',monospace;
+    font-family:'DM Mono',monospace;
     font-size:13px;
     letter-spacing:0.02em;
     color:var(--muted);
   }
   .eyebrow{
-    font-family:'JetBrains Mono',monospace;
+    font-family:'DM Mono',monospace;
     font-size:12.5px;
     letter-spacing:0.08em;
     color:var(--accent);
@@ -66,11 +68,9 @@
   }
   .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;}
   .brand .mark{
-    width:34px;height:34px;border-radius:9px;
-    background:radial-gradient(circle at 30% 30%, #1b2547, var(--ink));
-    color:#7ea1ff;
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Fraunces',serif;font-weight:600;font-size:15px;
+    width:34px;height:34px;border-radius:50%;
+    object-fit:cover;
+    display:block;
   }
   nav.links{display:flex;gap:36px;align-items:center;}
   nav.links a{font-size:14.5px;color:var(--ink-soft);}
@@ -99,7 +99,7 @@
   .btn-primary:hover{background:#1a2334;}
   .btn-outline{border-color:var(--line);color:var(--ink);}
   .btn-outline:hover{border-color:var(--ink);}
-  .btn-accent{background:var(--accent);color:#fff;}
+  .btn-accent{background:var(--accent-fill);color:#fff;}
   .btn-accent:hover{background:var(--accent-dark);}
 
   /* hero */
@@ -108,7 +108,7 @@
   .badge{
     display:inline-flex;align-items:center;gap:8px;
     padding:7px 14px;border-radius:999px;border:1px solid var(--line);
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-soft);
+    font-family:'DM Mono',monospace;font-size:12.5px;color:var(--ink-soft);
     margin-bottom:28px;
   }
   .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);}
@@ -125,13 +125,13 @@
     padding:18px;border:1px solid var(--line);border-radius:12px;
     background:var(--bg);
   }
-  .stack-card.active{border-color:var(--accent);background:#f4f6ff;}
+  .stack-card.active{border-color:var(--accent);background:#f2f1ff;}
   .stack-icon{
     width:38px;height:38px;border-radius:9px;flex:none;
     display:flex;align-items:center;justify-content:center;
     background:var(--bg-tint);color:var(--ink-soft);
   }
-  .stack-card.active .stack-icon{background:var(--accent);color:#fff;}
+  .stack-card.active .stack-icon{background:var(--accent-fill);color:#fff;}
   .stack-title{font-size:15px;font-weight:600;}
   .stack-sub{font-size:13px;color:var(--muted);}
 
@@ -156,7 +156,7 @@
   .build-card h3{font-size:18px;margin-bottom:10px;}
   .build-card p{font-size:14px;color:var(--ink-soft);flex:1;margin:0;}
   .build-card .build-sub{
-    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);
+    font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);
     margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
   }
   .build-card.dark .build-sub{border-top-color:rgba(255,255,255,0.14);}
@@ -168,7 +168,7 @@
   .feature h2{font-size:38px;margin:6px 0 18px;}
   .feature p.lede{margin-bottom:22px;}
   .status-line{
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);
+    font-family:'DM Mono',monospace;font-size:12.5px;color:var(--accent);
     margin-top:22px;
   }
   .feature-panel{
@@ -178,7 +178,7 @@
   .feature-panel .row span{font-size:13px;color:var(--muted);}
   .num-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
   .num-card{padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--bg);}
-  .num-card .num{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:13px;margin-bottom:10px;display:block;}
+  .num-card .num{font-family:'DM Mono',monospace;color:var(--accent);font-size:13px;margin-bottom:10px;display:block;}
   .num-card h4{font-family:'Inter',sans-serif;font-weight:600;font-size:15.5px;margin:0 0 8px;}
   .num-card p{font-size:13.5px;color:var(--muted);margin:0;}
 
@@ -188,12 +188,12 @@
   .lead-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;}
   .lead-top h3{font-size:24px;}
   .tag{
-    font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 10px;
+    font-family:'DM Mono',monospace;font-size:11.5px;padding:5px 10px;
     border:1px solid var(--line);border-radius:6px;color:var(--ink-soft);
   }
-  .lead-meta{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);margin-bottom:18px;}
+  .lead-meta{font-family:'DM Mono',monospace;font-size:12.5px;color:var(--muted);margin-bottom:18px;}
   .lead-card p.desc{font-size:14.5px;color:var(--ink-soft);margin-bottom:20px;}
-  .focus-label{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);margin-bottom:12px;border-top:1px solid var(--line);padding-top:18px;}
+  .focus-label{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted);margin-bottom:12px;border-top:1px solid var(--line);padding-top:18px;}
   .focus-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}
   .focus-list li{font-size:14px;color:var(--ink-soft);padding-left:14px;position:relative;}
   .focus-list li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--accent);}
@@ -204,7 +204,7 @@
   .vision-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.12);border-radius:14px;overflow:hidden;}
   .vision-cell{background:var(--ink);padding:32px 26px;}
   .vision-cell .mono{color:#7ea1ff;display:block;margin-bottom:14px;font-size:12px;}
-  .vision-cell p{font-family:'Fraunces',serif;font-size:19px;font-weight:400;color:#fff;margin:0;}
+  .vision-cell p{font-family:'Instrument Serif',serif;font-size:19px;font-weight:400;color:#fff;margin:0;}
 
   /* about */
   .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;}
@@ -225,8 +225,8 @@
   }
   .contact-list a:last-child{border-bottom:none;}
   .contact-list a:hover{background:var(--bg-tint);}
-  .contact-list a span.arrow{color:var(--muted);font-family:'JetBrains Mono',monospace;}
-  .email-box{margin-top:24px;padding:20px 24px;border:1px solid var(--line);border-radius:14px;font-family:'JetBrains Mono',monospace;font-size:14px;}
+  .contact-list a span.arrow{color:var(--muted);font-family:'DM Mono',monospace;}
+  .email-box{margin-top:24px;padding:20px 24px;border:1px solid var(--line);border-radius:14px;font-family:'DM Mono',monospace;font-size:14px;}
 
   footer{border-top:1px solid var(--line);padding:40px 0;}
   .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
@@ -251,7 +251,7 @@
 
 <header>
   <div class="wrap nav">
-    <a href="#" class="brand"><span class="mark">MR</span> Modern Reliability</a>
+    <a href="#" class="brand"><img src="logo.png" alt="Modern Reliability" class="mark"> Modern Reliability</a>
     <nav class="links">
       <a href="#build">What We Build</a>
       <div class="dropdown">
@@ -278,9 +278,9 @@
       <h1 class="display">Building intelligent systems for search, commerce, and infrastructure.</h1>
       <p class="lede">Modern Reliability builds AI-powered platforms that improve how people discover products, how ideas become products, and how digital systems operate at scale.</p>
       <ul class="checklist">
-        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#3652d9"/><path d="M4.5 8.2l2.2 2.2 4.8-4.9" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>AI-powered search systems (NexaRank)</li>
-        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#3652d9"/><path d="M4.5 8.2l2.2 2.2 4.8-4.9" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Commerce infrastructure platforms</li>
-        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#3652d9"/><path d="M4.5 8.2l2.2 2.2 4.8-4.9" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Future DevOps intelligence systems</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#4d49fc"/><path d="M4.5 8.2l2.2 2.2 4.8-4.9" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>AI-powered search systems (NexaRank)</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#4d49fc"/><path d="M4.5 8.2l2.2 2.2 4.8-4.9" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Commerce infrastructure platforms</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#4d49fc"/><path d="M4.5 8.2l2.2 2.2 4.8-4.9" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Future DevOps intelligence systems</li>
       </ul>
       <div class="cta-row">
         <a href="#nexarank" class="btn btn-accent">Explore NexaRank</a>
