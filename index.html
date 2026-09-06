@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Reliability</title>
+<meta name="description" content="Modern Reliability builds AI-powered platforms that improve how people discover products, how ideas become products, and how digital systems operate at scale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b1220;
+    --ink-soft:#3a4152;
+    --muted:#6b7280;
+    --line:#e6e8ec;
+    --accent:#3652d9;
+    --accent-dark:#243aa8;
+    --bg:#ffffff;
+    --bg-tint:#f7f8fa;
+    --max:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    line-height:1.12;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.02em;
+    color:var(--muted);
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.08em;
+    color:var(--accent);
+    margin-bottom:14px;
+    display:block;
+  }
+  /* header */
+  header{
+    position:sticky;top:0;z-index:40;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    height:72px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;}
+  .brand .mark{
+    width:34px;height:34px;border-radius:9px;
+    background:radial-gradient(circle at 30% 30%, #1b2547, var(--ink));
+    color:#7ea1ff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:600;font-size:15px;
+  }
+  nav.links{display:flex;gap:36px;align-items:center;}
+  nav.links a{font-size:14.5px;color:var(--ink-soft);}
+  nav.links a:hover{color:var(--ink);}
+  .dropdown{position:relative;}
+  .dropdown-menu{
+    position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
+    background:var(--bg);border:1px solid var(--line);border-radius:12px;
+    padding:8px;min-width:220px;box-shadow:0 12px 28px rgba(11,18,32,0.08);
+    opacity:0;visibility:hidden;transform:translateX(-50%) translateY(4px);
+    transition:opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  }
+  .dropdown:hover .dropdown-menu,.dropdown:focus-within .dropdown-menu{
+    opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);
+  }
+  .dropdown-menu a{display:block;padding:10px 14px;border-radius:8px;}
+  .dropdown-menu a:hover{background:var(--bg-tint);}
+  .dropdown-item-title{display:block;font-size:14px;font-weight:600;color:var(--ink);}
+  .dropdown-item-sub{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:10px 20px;border-radius:8px;font-size:14.5px;font-weight:500;
+    border:1px solid transparent;cursor:pointer;
+  }
+  .btn-primary{background:var(--ink);color:#fff;}
+  .btn-primary:hover{background:#1a2334;}
+  .btn-outline{border-color:var(--line);color:var(--ink);}
+  .btn-outline:hover{border-color:var(--ink);}
+  .btn-accent{background:var(--accent);color:#fff;}
+  .btn-accent:hover{background:var(--accent-dark);}
+
+  /* hero */
+  .hero{padding:88px 0 96px;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:64px;align-items:start;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:7px 14px;border-radius:999px;border:1px solid var(--line);
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-soft);
+    margin-bottom:28px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  h1.display{font-size:52px;margin-bottom:24px;}
+  .lede{font-size:17px;color:var(--ink-soft);max-width:52ch;margin-bottom:28px;}
+  .checklist{list-style:none;padding:0;margin:0 0 36px;display:flex;flex-direction:column;gap:10px;}
+  .checklist li{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--ink-soft);}
+  .checklist svg{flex:none;margin-top:3px;}
+  .cta-row{display:flex;gap:14px;}
+
+  .card-stack{display:flex;flex-direction:column;gap:12px;}
+  .stack-card{
+    display:flex;align-items:center;gap:14px;
+    padding:18px;border:1px solid var(--line);border-radius:12px;
+    background:var(--bg);
+  }
+  .stack-card.active{border-color:var(--accent);background:#f4f6ff;}
+  .stack-icon{
+    width:38px;height:38px;border-radius:9px;flex:none;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--bg-tint);color:var(--ink-soft);
+  }
+  .stack-card.active .stack-icon{background:var(--accent);color:#fff;}
+  .stack-title{font-size:15px;font-weight:600;}
+  .stack-sub{font-size:13px;color:var(--muted);}
+
+  section{padding:96px 0;border-top:1px solid var(--line);}
+  .section-head{margin-bottom:52px;max-width:640px;}
+  .section-head h2{font-size:36px;}
+
+  /* what we build */
+  .build-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .build-card{
+    padding:26px;border-radius:14px;border:1px solid var(--line);
+    display:flex;flex-direction:column;min-height:260px;
+  }
+  .build-card.dark{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .build-card.dark .build-sub{color:#8b93a8;}
+  .build-card.dark .build-icon{background:rgba(255,255,255,0.08);color:#fff;}
+  .build-icon{
+    width:36px;height:36px;border-radius:9px;background:var(--bg-tint);
+    display:flex;align-items:center;justify-content:center;color:var(--ink-soft);
+    margin-bottom:22px;
+  }
+  .build-card h3{font-size:18px;margin-bottom:10px;}
+  .build-card p{font-size:14px;color:var(--ink-soft);flex:1;margin:0;}
+  .build-card .build-sub{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);
+    margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
+  }
+  .build-card.dark .build-sub{border-top-color:rgba(255,255,255,0.14);}
+
+  /* nexarank feature */
+  .feature{
+    display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:64px;
+  }
+  .feature h2{font-size:38px;margin:6px 0 18px;}
+  .feature p.lede{margin-bottom:22px;}
+  .status-line{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);
+    margin-top:22px;
+  }
+  .feature-panel{
+    border:1px solid var(--line);border-radius:16px;padding:32px;background:var(--bg-tint);
+  }
+  .feature-panel .row{display:flex;justify-content:space-between;margin-bottom:18px;}
+  .feature-panel .row span{font-size:13px;color:var(--muted);}
+  .num-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .num-card{padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--bg);}
+  .num-card .num{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:13px;margin-bottom:10px;display:block;}
+  .num-card h4{font-family:'Inter',sans-serif;font-weight:600;font-size:15.5px;margin:0 0 8px;}
+  .num-card p{font-size:13.5px;color:var(--muted);margin:0;}
+
+  /* leadership */
+  .lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .lead-card{border:1px solid var(--line);border-radius:14px;padding:32px;}
+  .lead-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;}
+  .lead-top h3{font-size:24px;}
+  .tag{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:5px 10px;
+    border:1px solid var(--line);border-radius:6px;color:var(--ink-soft);
+  }
+  .lead-meta{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);margin-bottom:18px;}
+  .lead-card p.desc{font-size:14.5px;color:var(--ink-soft);margin-bottom:20px;}
+  .focus-label{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);margin-bottom:12px;border-top:1px solid var(--line);padding-top:18px;}
+  .focus-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}
+  .focus-list li{font-size:14px;color:var(--ink-soft);padding-left:14px;position:relative;}
+  .focus-list li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--accent);}
+
+  /* vision */
+  .vision{background:var(--ink);color:#fff;}
+  .vision .section-head h2{color:#fff;}
+  .vision-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.12);border-radius:14px;overflow:hidden;}
+  .vision-cell{background:var(--ink);padding:32px 26px;}
+  .vision-cell .mono{color:#7ea1ff;display:block;margin-bottom:14px;font-size:12px;}
+  .vision-cell p{font-family:'Fraunces',serif;font-size:19px;font-weight:400;color:#fff;margin:0;}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;}
+  .about-grid h2{font-size:34px;margin-bottom:20px;}
+  .about-grid p{font-size:15.5px;color:var(--ink-soft);margin-bottom:16px;max-width:52ch;}
+  .focus-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .focus-box{border:1px solid var(--line);border-radius:12px;padding:20px;}
+  .focus-box h4{font-family:'Inter',sans-serif;font-weight:600;font-size:14.5px;margin:0 0 6px;}
+  .focus-box p{font-size:13px;color:var(--muted);margin:0;}
+
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+  .contact-grid h2{font-size:36px;margin-bottom:20px;}
+  .contact-list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .contact-list a{
+    padding:20px 24px;border-bottom:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:500;
+  }
+  .contact-list a:last-child{border-bottom:none;}
+  .contact-list a:hover{background:var(--bg-tint);}
+  .contact-list a span.arrow{color:var(--muted);font-family:'JetBrains Mono',monospace;}
+  .email-box{margin-top:24px;padding:20px 24px;border:1px solid var(--line);border-radius:14px;font-family:'JetBrains Mono',monospace;font-size:14px;}
+
+  footer{border-top:1px solid var(--line);padding:40px 0;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .footer-row .mono{font-size:12.5px;}
+  .footer-links{display:flex;gap:28px;}
+  .footer-links a{font-size:13.5px;color:var(--ink-soft);}
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .hero-grid,.feature,.about-grid,.contact-grid,.lead-grid{grid-template-columns:1fr;}
+    .build-grid,.vision-grid{grid-template-columns:1fr 1fr;}
+    h1.display{font-size:38px;}
+    .section-head h2{font-size:28px;}
+  }
+  @media (max-width:560px){
+    .build-grid,.vision-grid,.num-grid,.focus-grid{grid-template-columns:1fr;}
+    .wrap{padding:0 20px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="brand"><span class="mark">MR</span> Modern Reliability</a>
+    <nav class="links">
+      <a href="#build">What We Build</a>
+      <div class="dropdown">
+        <a href="#nexarank" class="dropdown-trigger">Products</a>
+        <div class="dropdown-menu">
+          <a href="#nexarank">
+            <span class="dropdown-item-title">NexaRank</span>
+            <span class="dropdown-item-sub">AI-powered merchandising</span>
+          </a>
+        </div>
+      </div>
+      <a href="#leadership">Leadership</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-primary">Contact</a>
+  </div>
+</header>
+
+<section class="hero" style="border-top:none;">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge"><span class="dot"></span>AI &middot; Search &middot; Commerce &middot; Infrastructure</span>
+      <h1 class="display">Building intelligent systems for search, commerce, and infrastructure.</h1>
+      <p class="lede">Modern Reliability builds AI-powered platforms that improve how people discover products, how ideas become products, and how digital systems operate at scale.</p>
+      <ul class="checklist">
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#3652d9"/><path d="M4.5 8.2l2.2 2.2 4.8-4.9" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>AI-powered search systems (NexaRank)</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#3652d9"/><path d="M4.5 8.2l2.2 2.2 4.8-4.9" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Commerce infrastructure platforms</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#3652d9"/><path d="M4.5 8.2l2.2 2.2 4.8-4.9" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Future DevOps intelligence systems</li>
+      </ul>
+      <div class="cta-row">
+        <a href="#nexarank" class="btn btn-accent">Explore NexaRank</a>
+        <a href="#contact" class="btn btn-outline">Contact</a>
+      </div>
+    </div>
+    <div class="card-stack">
+      <div class="stack-card active">
+        <div class="stack-icon">&#128269;</div>
+        <div><div class="stack-title">Search Intelligence</div><div class="stack-sub">NexaRank &middot; AI-powered merchandising</div></div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">&#128717;</div>
+        <div><div class="stack-title">Commerce Infrastructure</div><div class="stack-sub">Platform architecture &middot; Multi-sided systems</div></div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">&#128161;</div>
+        <div><div class="stack-title">Idea-to-Product Systems</div><div class="stack-sub">Dreamify &middot; AI content &amp; community</div></div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">&#128421;</div>
+        <div><div class="stack-title">DevOps Intelligence</div><div class="stack-sub">Future initiative &middot; Adaptive infrastructure</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="build">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">WHAT WE BUILD</span>
+      <h2>Four systems. One coherent company.</h2>
+    </div>
+    <div class="build-grid">
+      <div class="build-card dark">
+        <div class="build-icon">&#128269;</div>
+        <h3>AI-powered Search Systems</h3>
+        <p>Search that understands intent &mdash; ranking, merchandising, and optimization driven by behavioral signals and AI.</p>
+        <div class="build-sub">Live: NexaRank</div>
+      </div>
+      <div class="build-card">
+        <div class="build-icon">&#128717;</div>
+        <h3>Commerce Infrastructure Platforms</h3>
+        <p>Multi-sided marketplace architecture connecting buyers, sellers, manufacturers, logistics, and payments.</p>
+        <div class="build-sub">Active: AvinoShop CTO</div>
+      </div>
+      <div class="build-card">
+        <div class="build-icon">&#128161;</div>
+        <h3>Idea-to-Product Systems</h3>
+        <p>Platforms where ideas become structured assets &mdash; created with AI, shaped by communities, evolved into real products.</p>
+        <div class="build-sub">Active: Dreamify CTO</div>
+      </div>
+      <div class="build-card">
+        <div class="build-icon">&#128421;</div>
+        <h3>Future DevOps Intelligence</h3>
+        <p>Adaptive infrastructure that monitors, reasons about, and improves itself. The next platform initiative.</p>
+        <div class="build-sub">In research</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nexarank">
+  <div class="wrap">
+    <div class="feature">
+      <div>
+        <span class="eyebrow">FEATURED PRODUCT</span>
+        <h2>NexaRank</h2>
+        <p class="mono" style="margin-bottom:18px;">Context-aware headless CMS &amp; merchandising control plane</p>
+        <p class="lede">NexaRank sits between search engines and storefronts to control product discovery using AI and rule-based intelligence. Unlike generic headless CMS platforms that deliver static content, NexaRank evaluates real-time page context, search signals, and business rules to return the right content for the right moment &mdash; the open source alternative to Endeca Experience Manager.</p>
+        <ul class="focus-list" style="margin-bottom:26px;">
+          <li>Product ranking control (boost, pin, bury)</li>
+          <li>Merchandising rules engine</li>
+          <li>AI-assisted optimization</li>
+          <li>Search performance feedback loops</li>
+        </ul>
+        <a href="#contact" class="btn btn-accent">Request early access</a>
+        <div class="status-line">Status: In active development &mdash; accepting early access requests</div>
+      </div>
+      <div class="feature-panel">
+        <div class="row"><strong>Request Demo</strong><span>NexaRank</span></div>
+        <p style="font-size:13.5px;color:var(--muted);margin:0 0 20px;">A closer look at the four capabilities driving the platform.</p>
+      </div>
+    </div>
+    <div class="num-grid">
+      <div class="num-card">
+        <span class="num">01</span>
+        <h4>Ranking Control</h4>
+        <p>Boost priority products, pin hero SKUs, and suppress low-margin inventory &mdash; without touching backend code.</p>
+      </div>
+      <div class="num-card">
+        <span class="num">02</span>
+        <h4>Behavioral Signals</h4>
+        <p>Continuously re-ranks results using real-time click, cart, and conversion data from your storefront.</p>
+      </div>
+      <div class="num-card">
+        <span class="num">03</span>
+        <h4>Semantic Search</h4>
+        <p>Goes beyond keyword matching &mdash; interprets user intent, handles synonyms, and understands contextual queries.</p>
+      </div>
+      <div class="num-card">
+        <span class="num">04</span>
+        <h4>Performance Analytics</h4>
+        <p>Full visibility into search revenue, zero-result queries, and conversion attribution by search term.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="leadership">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">TECHNICAL LEADERSHIP ROLES</span>
+      <h2>Fractional CTO engagements with early-stage ventures.</h2>
+      <p class="lede" style="margin-top:16px;">These are independent companies &mdash; not products owned by Modern Reliability. The founder serves as CTO, providing hands-on technical leadership during the 0&rarr;1 phase.</p>
+    </div>
+    <div class="lead-grid">
+      <div class="lead-card">
+        <div class="lead-top"><h3>Dreamify</h3><span class="tag">CTO</span></div>
+        <div class="lead-meta">AI &middot; Content &middot; Community</div>
+        <p class="desc">Platform where ideas become social objects, created with AI, remixed by communities, and evolve into products and brands.</p>
+        <div class="focus-label">TECHNICAL FOCUS</div>
+        <ul class="focus-list">
+          <li>AI content systems</li>
+          <li>Community-driven remixing</li>
+          <li>Idea graph and provenance systems</li>
+        </ul>
+      </div>
+      <div class="lead-card">
+        <div class="lead-top"><h3>AvinoShop</h3><span class="tag">CTO</span></div>
+        <div class="lead-meta">Commerce &middot; Marketplace &middot; AI</div>
+        <p class="desc">AI-enabled global commerce platform connecting buyers, sellers, manufacturers, logistics providers, and payments into a unified system.</p>
+        <div class="focus-label">TECHNICAL FOCUS</div>
+        <ul class="focus-list">
+          <li>Marketplace architecture</li>
+          <li>Multi-sided commerce systems</li>
+          <li>AI-driven discovery and matching</li>
+          <li>Logistics + payment orchestration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vision">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow" style="color:#7ea1ff;">VISION</span>
+      <h2>We are building systems where intelligence is embedded across digital infrastructure.</h2>
+    </div>
+    <div class="vision-grid">
+      <div class="vision-cell"><span class="mono">SEARCH SYSTEMS</span><p>Discovery becomes intelligent</p></div>
+      <div class="vision-cell"><span class="mono">DREAMIFY</span><p>Ideas become structured assets</p></div>
+      <div class="vision-cell"><span class="mono">AVINOSHOP</span><p>Global trade becomes unified</p></div>
+      <div class="vision-cell"><span class="mono">FUTURE DEVOPS</span><p>Infrastructure becomes adaptive</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow">ABOUT</span>
+      <h2>One founder. Multiple deep systems.</h2>
+      <p>Founder of Modern Reliability and technical CTO in early-stage AI and commerce platforms. Experience in search systems, cloud infrastructure, ecommerce platforms, and AI system design.</p>
+      <p>The focus is on shipping production-grade software at the intersection of intelligence and commerce &mdash; building platforms that work reliably at scale from day one.</p>
+    </div>
+    <div class="focus-grid">
+      <div class="focus-box"><h4>Search &amp; Discovery</h4><p>Ranking, merchandising, query understanding</p></div>
+      <div class="focus-box"><h4>Commerce Systems</h4><p>Marketplace architecture, platform design</p></div>
+      <div class="focus-box"><h4>Cloud Infrastructure</h4><p>Scalable, reliable system design</p></div>
+      <div class="focus-box"><h4>AI Integration</h4><p>Applied ML in production environments</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="eyebrow">CONTACT</span>
+      <h2>Work with Modern Reliability.</h2>
+      <p class="lede">Collaborate on AI, commerce, and infrastructure systems. Whether you're a partner, early adopter of NexaRank, an investor, or a founder seeking technical leadership &mdash; reach out.</p>
+    </div>
+    <div>
+      <div class="contact-list">
+        <a href="mailto:modernreliability@gmail.com?subject=NexaRank%20Early%20Access">NexaRank &mdash; Early Access <span class="arrow">&rarr;</span></a>
+        <a href="mailto:modernreliability@gmail.com?subject=Investor%20Relations">Investor Relations <span class="arrow">&rarr;</span></a>
+        <a href="mailto:modernreliability@gmail.com?subject=Fractional%20CTO%20Inquiry">Fractional CTO Inquiry <span class="arrow">&rarr;</span></a>
+        <a href="mailto:modernreliability@gmail.com?subject=General%20Collaboration">General Collaboration <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="email-box">modernreliability@gmail.com</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>
+      <div style="font-weight:600;margin-bottom:4px;">Modern Reliability</div>
+      <div class="mono">&copy; 2026 &middot; AI &middot; Search &middot; Commerce &middot; Infrastructure</div>
+    </div>
+    <div class="footer-links">
+      <a href="#build">What We Build</a>
+      <a href="#nexarank">NexaRank</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
