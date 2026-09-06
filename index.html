@@ -162,23 +162,24 @@
   .build-card.dark .build-sub{border-top-color:rgba(255,255,255,0.14);}
 
   /* nexarank feature */
-  .feature{
-    display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:64px;
+  .nx-header{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:44px;flex-wrap:wrap;}
+  .nx-header h2{font-size:44px;margin-top:6px;}
+  .nx-body{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+  .nx-left{display:flex;flex-direction:column;gap:16px;}
+  .feature-panel{
+    border-radius:16px;padding:36px;background:var(--ink);color:#fff;
   }
-  .feature h2{font-size:38px;margin:6px 0 18px;}
-  .feature p.lede{margin-bottom:22px;}
+  .feature-panel .lede{margin-bottom:22px;}
+  .dark-list li{color:#c7cbd6;}
+  .dark-list li::before{background:var(--accent-fill);}
+  .btn-link{color:#8fa6ff;font-size:14.5px;font-weight:500;}
   .status-line{
     font-family:'DM Mono',monospace;font-size:12.5px;color:var(--accent);
-    margin-top:22px;
+    background:#eef1ff;border-radius:12px;padding:16px 20px;
   }
-  .feature-panel{
-    border:1px solid var(--line);border-radius:16px;padding:32px;background:var(--bg-tint);
-  }
-  .feature-panel .row{display:flex;justify-content:space-between;margin-bottom:18px;}
-  .feature-panel .row span{font-size:13px;color:var(--muted);}
-  .num-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-  .num-card{padding:22px;border:1px solid var(--line);border-radius:12px;background:var(--bg);}
-  .num-card .num{font-family:'DM Mono',monospace;color:var(--accent);font-size:13px;margin-bottom:10px;display:block;}
+  .num-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start;}
+  .num-card{padding:24px;border:1px solid var(--line);border-radius:12px;background:var(--bg);}
+  .num-card .num{font-family:'DM Mono',monospace;color:var(--muted);font-size:12.5px;margin-bottom:14px;display:block;}
   .num-card h4{font-family:'Inter',sans-serif;font-weight:600;font-size:15.5px;margin:0 0 8px;}
   .num-card p{font-size:13.5px;color:var(--muted);margin:0;}
 
@@ -200,43 +201,39 @@
 
   /* vision */
   .vision{background:var(--ink);color:#fff;}
-  .vision .section-head h2{color:#fff;}
-  .vision-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.12);border-radius:14px;overflow:hidden;}
-  .vision-cell{background:var(--ink);padding:32px 26px;}
-  .vision-cell .mono{color:#7ea1ff;display:block;margin-bottom:14px;font-size:12px;}
-  .vision-cell p{font-family:'Instrument Serif',serif;font-size:19px;font-weight:400;color:#fff;margin:0;}
+  .vision-grid{display:grid;grid-template-columns:1fr 1fr;row-gap:36px;column-gap:24px;}
+  .vision-cell .mono{color:#8b93a8;display:block;margin-bottom:10px;font-size:12px;}
+  .vision-cell p{font-family:'Instrument Serif',serif;font-size:20px;font-weight:400;color:#fff;margin:0;}
 
   /* about */
-  .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;}
-  .about-grid h2{font-size:34px;margin-bottom:20px;}
-  .about-grid p{font-size:15.5px;color:var(--ink-soft);margin-bottom:16px;max-width:52ch;}
-  .focus-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .focus-box{border:1px solid var(--line);border-radius:12px;padding:20px;}
-  .focus-box h4{font-family:'Inter',sans-serif;font-weight:600;font-size:14.5px;margin:0 0 6px;}
-  .focus-box p{font-size:13px;color:var(--muted);margin:0;}
+  .about-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:64px;}
+  .about-grid h2{font-size:34px;}
+  .about-grid p{font-size:15.5px;color:var(--ink-soft);margin-bottom:16px;max-width:56ch;}
+  .focus-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:26px;padding-top:26px;border-top:1px solid var(--line);}
+  .focus-box h4{font-family:'Inter',sans-serif;font-weight:600;font-size:15px;margin:0 0 6px;}
+  .focus-box p{font-size:13.5px;color:var(--muted);margin:0;}
 
   /* contact */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
-  .contact-grid h2{font-size:36px;margin-bottom:20px;}
-  .contact-list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
-  .contact-list a{
-    padding:20px 24px;border-bottom:1px solid var(--line);
+  .contact-grid-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;}
+  .contact-card{
+    padding:22px 24px;border:1px solid var(--line);border-radius:12px;
     display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:500;
   }
-  .contact-list a:last-child{border-bottom:none;}
-  .contact-list a:hover{background:var(--bg-tint);}
-  .contact-list a span.arrow{color:var(--muted);font-family:'DM Mono',monospace;}
-  .email-box{margin-top:24px;padding:20px 24px;border:1px solid var(--line);border-radius:14px;font-family:'DM Mono',monospace;font-size:14px;}
+  .contact-card:hover{background:var(--bg-tint);}
+  .contact-card .arrow{color:var(--muted);font-family:'DM Mono',monospace;}
+  .email-line{display:inline-flex;gap:8px;align-items:center;font-family:'DM Mono',monospace;font-size:14.5px;color:var(--ink-soft);}
+  .email-line:hover{color:var(--accent);}
 
-  footer{border-top:1px solid var(--line);padding:40px 0;}
+  footer{border-top:1px solid var(--line);padding:28px 0;}
   .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .footer-row .brand{display:flex;align-items:center;gap:10px;font-weight:600;}
   .footer-row .mono{font-size:12.5px;}
   .footer-links{display:flex;gap:28px;}
   .footer-links a{font-size:13.5px;color:var(--ink-soft);}
 
   @media (max-width:860px){
     nav.links{display:none;}
-    .hero-grid,.feature,.about-grid,.contact-grid,.lead-grid{grid-template-columns:1fr;}
+    .hero-grid,.nx-body,.about-grid,.contact-grid-cards,.lead-grid,.vision-grid{grid-template-columns:1fr;}
     .build-grid,.vision-grid{grid-template-columns:1fr 1fr;}
     h1.display{font-size:38px;}
     .section-head h2{font-size:28px;}
@@ -345,46 +342,49 @@
 
 <section id="nexarank">
   <div class="wrap">
-    <div class="feature">
+    <div class="nx-header">
       <div>
         <span class="eyebrow">FEATURED PRODUCT</span>
         <h2>NexaRank</h2>
-        <p class="mono" style="margin-bottom:18px;">Context-aware headless CMS &amp; merchandising control plane</p>
-        <p class="lede">NexaRank sits between search engines and storefronts to control product discovery using AI and rule-based intelligence. Unlike generic headless CMS platforms that deliver static content, NexaRank evaluates real-time page context, search signals, and business rules to return the right content for the right moment &mdash; the open source alternative to Endeca Experience Manager.</p>
-        <ul class="focus-list" style="margin-bottom:26px;">
-          <li>Product ranking control (boost, pin, bury)</li>
-          <li>Merchandising rules engine</li>
-          <li>AI-assisted optimization</li>
-          <li>Search performance feedback loops</li>
-        </ul>
-        <a href="#contact" class="btn btn-accent">Request early access</a>
+        <p class="mono" style="margin-top:10px;">Context-aware headless CMS &amp; merchandising control plane</p>
+      </div>
+      <a href="#contact" class="btn btn-accent">Request Demo &#8599;</a>
+    </div>
+    <div class="nx-body">
+      <div class="nx-left">
+        <div class="feature-panel">
+          <p class="lede" style="color:#c7cbd6;">NexaRank sits between search engines and storefronts to control product discovery using AI and rule-based intelligence. Unlike generic headless CMS platforms that deliver static content, NexaRank evaluates real-time page context, search signals, and business rules to return the right content for the right moment &mdash; the open source alternative to Endeca Experience Manager.</p>
+          <ul class="focus-list dark-list">
+            <li>Product ranking control (boost, pin, bury)</li>
+            <li>Merchandising rules engine</li>
+            <li>AI-assisted optimization</li>
+            <li>Search performance feedback loops</li>
+          </ul>
+          <a href="#contact" class="btn-link">Request early access &rarr;</a>
+        </div>
         <div class="status-line">Status: In active development &mdash; accepting early access requests</div>
       </div>
-      <div class="feature-panel">
-        <div class="row"><strong>Request Demo</strong><span>NexaRank</span></div>
-        <p style="font-size:13.5px;color:var(--muted);margin:0 0 20px;">A closer look at the four capabilities driving the platform.</p>
-      </div>
-    </div>
-    <div class="num-grid">
-      <div class="num-card">
-        <span class="num">01</span>
-        <h4>Ranking Control</h4>
-        <p>Boost priority products, pin hero SKUs, and suppress low-margin inventory &mdash; without touching backend code.</p>
-      </div>
-      <div class="num-card">
-        <span class="num">02</span>
-        <h4>Behavioral Signals</h4>
-        <p>Continuously re-ranks results using real-time click, cart, and conversion data from your storefront.</p>
-      </div>
-      <div class="num-card">
-        <span class="num">03</span>
-        <h4>Semantic Search</h4>
-        <p>Goes beyond keyword matching &mdash; interprets user intent, handles synonyms, and understands contextual queries.</p>
-      </div>
-      <div class="num-card">
-        <span class="num">04</span>
-        <h4>Performance Analytics</h4>
-        <p>Full visibility into search revenue, zero-result queries, and conversion attribution by search term.</p>
+      <div class="num-grid">
+        <div class="num-card">
+          <span class="num">01</span>
+          <h4>Ranking Control</h4>
+          <p>Boost priority products, pin hero SKUs, and suppress low-margin inventory &mdash; without touching backend code.</p>
+        </div>
+        <div class="num-card">
+          <span class="num">02</span>
+          <h4>Behavioral Signals</h4>
+          <p>Continuously re-ranks results using real-time click, cart, and conversion data from your storefront.</p>
+        </div>
+        <div class="num-card">
+          <span class="num">03</span>
+          <h4>Semantic Search</h4>
+          <p>Goes beyond keyword matching &mdash; interprets user intent, handles synonyms, and understands contextual queries.</p>
+        </div>
+        <div class="num-card">
+          <span class="num">04</span>
+          <h4>Performance Analytics</h4>
+          <p>Full visibility into search revenue, zero-result queries, and conversion attribution by search term.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -427,10 +427,8 @@
 
 <section class="vision">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow" style="color:#7ea1ff;">VISION</span>
-      <h2>We are building systems where intelligence is embedded across digital infrastructure.</h2>
-    </div>
+    <span class="eyebrow" style="color:#7ea1ff;">VISION</span>
+    <h2 style="color:#fff;max-width:640px;margin-bottom:44px;">We are building systems where intelligence is embedded across digital infrastructure:</h2>
     <div class="vision-grid">
       <div class="vision-cell"><span class="mono">SEARCH SYSTEMS</span><p>Discovery becomes intelligent</p></div>
       <div class="vision-cell"><span class="mono">DREAMIFY</span><p>Ideas become structured assets</p></div>
@@ -444,44 +442,42 @@
   <div class="wrap about-grid">
     <div>
       <span class="eyebrow">ABOUT</span>
-      <h2>One founder. Multiple deep systems.</h2>
+      <h2>One founder.<br>Multiple deep systems.</h2>
+    </div>
+    <div>
       <p>Founder of Modern Reliability and technical CTO in early-stage AI and commerce platforms. Experience in search systems, cloud infrastructure, ecommerce platforms, and AI system design.</p>
       <p>The focus is on shipping production-grade software at the intersection of intelligence and commerce &mdash; building platforms that work reliably at scale from day one.</p>
-    </div>
-    <div class="focus-grid">
-      <div class="focus-box"><h4>Search &amp; Discovery</h4><p>Ranking, merchandising, query understanding</p></div>
-      <div class="focus-box"><h4>Commerce Systems</h4><p>Marketplace architecture, platform design</p></div>
-      <div class="focus-box"><h4>Cloud Infrastructure</h4><p>Scalable, reliable system design</p></div>
-      <div class="focus-box"><h4>AI Integration</h4><p>Applied ML in production environments</p></div>
+      <div class="focus-grid">
+        <div class="focus-box"><h4>Search &amp; Discovery</h4><p>Ranking, merchandising, query understanding</p></div>
+        <div class="focus-box"><h4>Commerce Systems</h4><p>Marketplace architecture, platform design</p></div>
+        <div class="focus-box"><h4>Cloud Infrastructure</h4><p>Scalable, reliable system design</p></div>
+        <div class="focus-box"><h4>AI Integration</h4><p>Applied ML in production environments</p></div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="contact">
-  <div class="wrap contact-grid">
-    <div>
+  <div class="wrap">
+    <div class="section-head">
       <span class="eyebrow">CONTACT</span>
       <h2>Work with Modern Reliability.</h2>
-      <p class="lede">Collaborate on AI, commerce, and infrastructure systems. Whether you're a partner, early adopter of NexaRank, an investor, or a founder seeking technical leadership &mdash; reach out.</p>
+      <p class="lede" style="margin-top:16px;">Collaborate on AI, commerce, and infrastructure systems. Whether you're a partner, early adopter of NexaRank, an investor, or a founder seeking technical leadership &mdash; reach out.</p>
     </div>
-    <div>
-      <div class="contact-list">
-        <a href="mailto:modernreliability@gmail.com?subject=NexaRank%20Early%20Access">NexaRank &mdash; Early Access <span class="arrow">&rarr;</span></a>
-        <a href="mailto:modernreliability@gmail.com?subject=Investor%20Relations">Investor Relations <span class="arrow">&rarr;</span></a>
-        <a href="mailto:modernreliability@gmail.com?subject=Fractional%20CTO%20Inquiry">Fractional CTO Inquiry <span class="arrow">&rarr;</span></a>
-        <a href="mailto:modernreliability@gmail.com?subject=General%20Collaboration">General Collaboration <span class="arrow">&rarr;</span></a>
-      </div>
-      <div class="email-box">modernreliability@gmail.com</div>
+    <div class="contact-grid-cards">
+      <a href="mailto:modernreliability@gmail.com?subject=NexaRank%20Early%20Access" class="contact-card">NexaRank &mdash; Early Access <span class="arrow">&rarr;</span></a>
+      <a href="mailto:modernreliability@gmail.com?subject=Investor%20Relations" class="contact-card">Investor Relations <span class="arrow">&rarr;</span></a>
+      <a href="mailto:modernreliability@gmail.com?subject=Fractional%20CTO%20Inquiry" class="contact-card">Fractional CTO Inquiry <span class="arrow">&rarr;</span></a>
+      <a href="mailto:modernreliability@gmail.com?subject=General%20Collaboration" class="contact-card">General Collaboration <span class="arrow">&rarr;</span></a>
     </div>
+    <a href="mailto:modernreliability@gmail.com" class="email-line">&#8599; modernreliability@gmail.com</a>
   </div>
 </section>
 
 <footer>
   <div class="wrap footer-row">
-    <div>
-      <div style="font-weight:600;margin-bottom:4px;">Modern Reliability</div>
-      <div class="mono">&copy; 2026 &middot; AI &middot; Search &middot; Commerce &middot; Infrastructure</div>
-    </div>
+    <div class="brand" style="font-size:14.5px;"><img src="Logo.png" alt="Modern Reliability" class="mark" style="width:26px;height:26px;"> Modern Reliability</div>
+    <div class="mono">&copy; 2026 &middot; AI &middot; Search &middot; Commerce &middot; Infrastructure</div>
     <div class="footer-links">
       <a href="#build">What We Build</a>
       <a href="#nexarank">NexaRank</a>
@@ -491,6 +487,7 @@
     </div>
   </div>
 </footer>
+
 
 </body>
 </html>
